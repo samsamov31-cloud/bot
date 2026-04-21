@@ -39,6 +39,19 @@ except ImportError:
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
 
+# Matplotlib tekshirish
+try:
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as _plt
+    _fig = _plt.figure()
+    _plt.close(_fig)
+    MATPLOTLIB_OK = True
+    logging.info("Matplotlib OK: " + matplotlib.__version__)
+except Exception as _e:
+    MATPLOTLIB_OK = False
+    logging.warning("Matplotlib ishlamaydi: " + str(_e))
+
 # ═══════════════════════════════════════════
 # SOZLAMALAR — Environment Variables
 # Railway Variables bo'limiga qo'shing!
@@ -315,9 +328,17 @@ def draw_chart(ticker, candles, sups, ress, price, trend, breakouts, atr, ai_lev
     TradingView uslubida professional chart.
     ai_levels = {"buy_zone": float, "stop_loss": float, "take_profit": float}
     """
-    if not MATPLOTLIB_OK or len(candles) < 10:
+    logging.info("Chart yaratilmoqda: " + ticker + " | MATPLOTLIB_OK=" + str(MATPLOTLIB_OK) + " | candles=" + str(len(candles)))
+    if not MATPLOTLIB_OK:
+        logging.warning("Matplotlib mavjud emas — chart yaratilmadi")
+        return None
+    if len(candles) < 10:
+        logging.warning("Candles yetarli emas: " + str(len(candles)))
         return None
     try:
+        import matplotlib
+        matplotlib.use("Agg")
+        plt.switch_backend("Agg")
         # ── Layout: 4 panel ──
         fig = plt.figure(figsize=(14, 8), facecolor="#131722")
         gs  = fig.add_gridspec(
