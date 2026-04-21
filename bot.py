@@ -45,13 +45,6 @@ TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "")
 POLYGON_KEY      = os.environ.get("POLYGON_KEY",      "")
 OPENAI_KEY       = os.environ.get("OPENAI_KEY",       "")
 
-if not TELEGRAM_TOKEN:
-    logging.error("TELEGRAM_TOKEN topilmadi! Railway Variables ga qo'shing.")
-if not POLYGON_KEY:
-    logging.error("POLYGON_KEY topilmadi! Railway Variables ga qo'shing.")
-if not OPENAI_KEY:
-    logging.warning("OPENAI_KEY topilmadi — AI o'chirildi.")
-
 MIN_VOL   = 1_000_000
 MIN_CHG   = 2.0
 MAX_CHG   = 15.0
