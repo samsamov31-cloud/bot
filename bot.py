@@ -10,10 +10,9 @@ Tartib:
 pip install requests schedule beautifulsoup4 lxml matplotlib numpy pillow openai
 """
 
-import requests, schedule, time, logging, threading, re, io, json, os
-import numpy as np
-from datetime import datetime, timedelta
-from bs4 import BeautifulSoup
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 # .env fayldan o'qish (lokal ishlatish uchun)
 try:
