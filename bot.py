@@ -9,11 +9,9 @@ Tartib:
 
 pip install requests schedule beautifulsoup4 lxml matplotlib numpy pillow openai
 """
-
 import os
 from dotenv import load_dotenv
 load_dotenv()
-
 # .env fayldan o'qish (lokal ishlatish uchun)
 try:
     from dotenv import load_dotenv
